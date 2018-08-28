@@ -1,0 +1,23 @@
+<launch>
+  <node name="aruco_top" pkg="usb_cam" type="usb_cam_node" output="screen" >
+    <param name="video_device" value="/dev/video0" />
+    <param name="image_width" value="640" />
+    <param name="image_height" value="480" />
+    <param name="pixel_format" value="yuyv" />
+	<param name="camera_name" value="aruco_top" />
+    <param name="camera_frame_id" value="aruco_top_id" />
+    <param name="io_method" value="mmap"/>
+  </node>
+
+  <node name="scanner" pkg="scanner" type="scanner.py" output="screen">
+  </node>	
+
+  <node name="power_node" pkg="rosserial_python" type="serial_node.py" output="screen" respawn="true">
+  <param name="port" value="/dev/serial/by-path/platform-3f980000.usb-usb-0:1.2:1.0-port0" />
+  </node>
+  
+  <node name="sensor_node" pkg="rosserial_python" type="serial_node.py" output="screen" respawn="true">
+  <param name="port" value="/dev/serial/by-path/platform-3f980000.usb-usb-0:1.4:1.0-port0" />
+  </node>
+
+</launch>
