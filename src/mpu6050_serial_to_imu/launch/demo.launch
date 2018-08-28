@@ -1,0 +1,8 @@
+<launch>
+
+  <node pkg="mpu6050_serial_to_imu" type="mpu6050_serial_to_imu_node" name="mpu6050_serial_to_imu_node" required="true">
+    <param name="port" value="/dev/serial/by-path/platform-xhci-hcd.3.auto-usb-0:1.2:1.0-port0"/>
+  </node>
+
+ 
+</launch>

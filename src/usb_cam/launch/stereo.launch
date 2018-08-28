@@ -1,0 +1,49 @@
+<launch>
+
+<arg name="stereo" default="stereo" />
+<arg name="image" default="image_rect_color" />
+
+<group ns="stereo">
+  <node name="left" pkg="usb_cam" type="usb_cam_node" output="screen" >
+    <param name="video_device" value="/dev/video0" />
+    <param name="image_width" value="640" />
+    <param name="image_height" value="480" />
+    <param name="pixel_format" value="yuyv" />
+	<param name="camera_name" value="left" />
+    <param name="camera_frame_id" value="left_id" />
+    <param name="io_method" value="mmap"/>
+  </node>
+  <node name="right" pkg="usb_cam" type="usb_cam_node" output="screen" >
+    <param name="video_device" value="/dev/video1" />
+    <param name="image_width" value="640" />
+    <param name="image_height" value="480" />
+    <param name="pixel_format" value="yuyv" />
+	<param name="camera_name" value="right" />
+    <param name="camera_frame_id" value="right_id" />
+    <param name="io_method" value="mmap"/>
+  </node>
+  <node name="stereo_image_proc" pkg="stereo_image_proc" type="stereo_image_proc" respawn="true" output="screen">
+	<param name="approximate_sync" value="true" />
+	<param name="queue_size" value="2000" />
+  </node>
+
+</group>
+
+
+<node name="image_view" pkg="image_view" type="stereo_view" output="screen">
+	<param name="approximate_sync" value="true" />
+	<param name="queue_size" value="2000" />
+	<remap from="stereo" to="$(arg stereo)" />
+    <remap from="image" to="$(arg image)" />
+</node>
+
+
+</launch>
+
+
+
+
+<!--
+ROS_NAMESPACE=stereo rosrun stereo_ima_proc stereo_image_proc _approximate_sync:=True _queue_size:=2000
+rosrun image_view stereo_view stereo:=tereo image:=image_rect_color _approximate_sync:=True _queue_size:=2000
+-->

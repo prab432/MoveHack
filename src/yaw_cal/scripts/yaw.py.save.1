@@ -1,0 +1,84 @@
+#!/usr/bin/env python
+import rospy
+from std_msgs.msg import Int16
+import atexit
+import serial
+import sys
+
+pub = rospy.Publisher('/yaw', Int16, queue_size=1)
+rospy.init_node('yaw_cal')
+port = 'platform-xhci-hcd.3.auto-usb-0:1.1.4:1.0'
+serial_port = serial.Serial(port, 115200)
+try:
+    while True :# serial_port.
+        reading = serial_port.readline()
+        pub.publish(int(reading))
+except Exception as e:
+    rospy.loginfo(e)
+    serial_port.close()
+
+sys.exit(0)
+
+
+
+# #!/usr/bin/env python
+# import rospy
+# from std_msgs.msg import Int16
+# import threading
+# import serial
+# import atexit
+# import sys
+
+# connected = False
+# port = '/dev/serial/by-path/platform-xhci-hcd.3.auto-usb-0:1.2:1.0-port0'
+# baud = 115200
+# stop = ""
+# serial_port = serial.Serial(port, baud)
+
+
+# class threadrun (threading.Thread):
+#     def __init__(self, threadID):
+#         threading.Thread.__init__(self)
+#         self.threadID = threadID
+#     def run(self):
+#         global stop,serial_port
+#         stopped = False
+#         while True :
+#             if stopped == False:
+#                 try :
+#                     reading = serial_port.readline()
+#                     pub.publish(int(reading))
+#                     if stop == "bye":
+#                         serial_port.close()
+#                         return True
+#                 except serial.SerialException as e:
+#                     serial_port.close()
+#                     stopped = True
+#                     rospy.loginfo("excepts" + str(e))
+#             else :
+#                 serial_port = serial.Serial(port, baud)
+#                 stopped = False
+#                 rospy.loginfo("excepts")
+
+# def myhook():
+# 	global stop
+# 	stop = "bye"
+# 	serial_port.close()
+
+# try :
+# 	pub = rospy.Publisher('/yaw', Int16, queue_size=1, latch = False)
+# 	rospy.init_node('yaw_cal')
+# 	thread = threadrun(1)
+# 	thread.start()
+# 	rospy.on_shutdown(myhook)	
+# 	# rospy.spin()
+# 	while True:
+# 		if stop == "bye":
+# 			print("main")
+# 			break
+# except (KeyboardInterrupt, rospy.ROSInterruptException, serial.SerialException ) as e:
+# 	pass
+	
+
+
+	
