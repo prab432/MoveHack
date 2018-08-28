@@ -1,0 +1,8 @@
+prefix=/home/pi/mitra/devel
+
+Name: scanner
+Description: Description of scanner
+Version: 0.0.0
+Cflags: 
+Libs: -L/home/pi/mitra/devel/lib 
+Requires: 

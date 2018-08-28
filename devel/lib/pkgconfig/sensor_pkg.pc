@@ -1,0 +1,8 @@
+prefix=/home/pi/mitra/devel
+
+Name: sensor_pkg
+Description: Description of sensor_pkg
+Version: 0.0.0
+Cflags: 
+Libs: -L/home/pi/mitra/devel/lib 
+Requires: 

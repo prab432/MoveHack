@@ -1,0 +1,8 @@
+prefix=/home/pi/mitra/devel
+
+Name: ultra_sens
+Description: Description of ultra_sens
+Version: 0.0.0
+Cflags: 
+Libs: -L/home/pi/mitra/devel/lib 
+Requires: 

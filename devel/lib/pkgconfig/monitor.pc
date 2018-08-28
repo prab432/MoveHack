@@ -1,0 +1,8 @@
+prefix=/home/pi/mitra/devel
+
+Name: monitor
+Description: Description of monitor
+Version: 0.0.0
+Cflags: 
+Libs: -L/home/pi/mitra/devel/lib 
+Requires: 

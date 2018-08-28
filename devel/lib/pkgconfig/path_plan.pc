@@ -1,0 +1,8 @@
+prefix=/home/pi/mitra/devel
+
+Name: path_plan
+Description: Description of path_plan
+Version: 0.0.0
+Cflags: -I/home/pi/mitra/devel/include
+Libs: -L/home/pi/mitra/devel/lib 
+Requires: 
